@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lista sa nestalima</title>
-</head>
-<body>
-<h2>Nestala osoba</h2>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lista sa nestalima</title>
+  </head>
 
-<div class="container w-[100%]">
-  <img [src]="missingReportImage" alt="ime i prezime osobe" style="width:100%">
-  <div class="container">
-    <h4><b [innerHTML]="missingRecordName"></b></h4>
-    <div> Report
-      <div [innerHTML]="missingRecordReport">
+  <body>
+    <div class="card" (click)="this.goToProfile()">
+      <div class="card-title">Slika Nestale Osoba</div>
+      <div class="card-image">
+        <img [src]="missingReportImage" alt="Slika nestale osobe" />
+      </div>
+      <div class="card-content">
+        <div class="card-section">
+          <h3>Ime nestale osobe</h3>
+          <p [innerHTML]="missingRecordName"></p>
+        </div>
+        <div class="card-section">
+          <h3>Prezime nestale osobe</h3>
+          <p [innerHTML]="missingRecordLastName"></p>
+        </div>
+        <div class="card-section">
+          <h3>Informacije o nestanku</h3>
+          <p [innerHTML]="missingRecordReport"></p>
+        </div>
+        <div class="card-section">
+          <h3>Opis nestale osobe</h3>
+          <p [innerHTML]="missingReportDescription"></p>
+        </div>
       </div>
     </div>
-    <div> Opis kida
-      <div [innerHTML]="missingReportDescription">
-      </div>
-    </div>
-    <p>Grad odakle je i mesto nestanka (grad ili mozda i preciznije)</p>
-  </div>
-</div>
-
-</body>
+  </body>
 </html>

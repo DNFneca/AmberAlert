@@ -17,5 +17,5 @@ export const routes: Routes = [
   { path: 'card/:id', component: MissingPersonCardComponent, pathMatch: 'full'},
   { path: 'map', component: MapComponent},
   { path: 'missing', component: MissingPersonsComponent},
-  { path: '**', component: HomeComponent, redirectTo: '' },  // Wildcard route for a 404 page
+  // { path: '**', component: HomeComponent, redirectTo: '' },  // Wildcard route for a 404 page
 ];

@@ -6,6 +6,11 @@ module.exports = {
   darkMode: "class",
   theme: {
     screens: {
+      "phone": "100px",
+      "tablet": "640px",
+      "md": "768px",
+      'laptop': '1024px',
+      'desktop': '1280px',
       "xlsm": "460px" /* extra light small (small is 640px) */,
       "lmd": "700px" /* light medium (medium is 768px) */,
       "llg": "875px" /* light large (large is 1024px) */,

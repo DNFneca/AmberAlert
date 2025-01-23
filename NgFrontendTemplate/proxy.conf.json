@@ -1,7 +1,6 @@
 {
   "/*": {
-      "target": "https://localhost:7145",
-      "secure": false,
-      "logLevel": "debug"
+      "target": "https://localhost:4000",
+      "secure": false
   }
 }

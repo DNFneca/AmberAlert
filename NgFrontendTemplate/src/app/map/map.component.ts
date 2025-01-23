@@ -29,7 +29,7 @@ export class MapComponent implements AfterViewInit {
       maxZoom: 18,
       minZoom: 1,
       layers: [tileLayer],
-    }).fitWorld().setView([44.7866, 20.4489], 10);
+    }).fitWorld().setView([44.7866, 20.4489], 8);
 
     this.map.on('tileerror', (err: Error) => {
       console.error('Tile loading error:', err);

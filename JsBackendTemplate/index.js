@@ -10,7 +10,7 @@ const mysql = require("mysql2");
 
 let userConnection;
 
-var hostname = "127.0.0.1";
+var hostname = "localhost";
 var database = "amberalertdb";
 var username = "admin";
 let password = "adminPassword";
@@ -39,32 +39,11 @@ function handleDisconnect() {
     setTimeout(function () {
       handleDisconnect();
     }, 1000);
-
     console.log(err.code);
-
-    // if (err.code === "PROTOCOL_CONNECTION_LOST") {
-    // } else {
-    //   throw err;
-    // }
   });
 }
 
 let upload = multer();
-
-var jsonParser = bodyParser.json();
-
-var mime = {
-  html: "text/html",
-  txt: "text/plain",
-  css: "text/css",
-  gif: "image/gif",
-  jpg: "image/jpeg",
-  png: "image/png",
-  svg: "image/svg+xml",
-  js: "application/javascript",
-};
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.json({ limit: "500mb" }));
 app.use(express.urlencoded({ limit: "500mb", extended: true }));
@@ -87,8 +66,6 @@ app.use(
 );
 
 app.options("*", cors());
-
-let i = 0;
 
 app.post("/api/getrecord", upload.fields([{ name: "Id" }]), (req, res) => {
   handleDisconnect();
@@ -124,8 +101,6 @@ app.get("/api/getrecords", (req, res) => {
   userConnection.end();
 });
 
-app.use("/public", express.static(__dirname + "/Resources/"));
-
 app.post(
   "/api/addrecord",
   upload.fields([
@@ -139,6 +114,8 @@ app.post(
     handleDisconnect();
     let requestBody = req.body;
     let maxNumberId;
+    console.log(req.body["firstName"]);
+
     userConnection.query(
       `select max(distinct Id) as max from missingperson`,
       function (err, result, fields) {
@@ -160,7 +137,7 @@ app.post(
               maxNumberId + path.extname(req.files["image"][0].originalname)
             }', '${requestBody.firstName}', '${
               requestBody.lastName
-            }', 'http://society-sharon.gl.at.ply.gg:16244/public/${
+            }', 'public/${
               maxNumberId + path.extname(req.files["image"][0].originalname)
             }', '${requestBody.report}', '${requestBody.description}')`,
             function (err, result2, fields) {
@@ -178,7 +155,9 @@ app.post(
   }
 );
 
-const port = process.env.PORT || 4000; // You can use environment variables for port configuration
+app.use("/public", express.static(__dirname + "/Resources/"));
+
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

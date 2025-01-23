@@ -14,19 +14,19 @@
       <h2>Prijava nestale osobe</h2>
       <form id="reportForm">
         <label for="name">Ime nestale osobe:</label>
-        <input type="text" id="name" name="name" required />
+        <input type="text"  id="name" name="name" required />
 
         <label for="surname">Prezime nestale osobe:</label>
-        <input type="text" id="surname" name="surname" required />
+        <input type="text"  id="surname" name="surname" required />
 
         <label for="info">Informacije o nestanku:</label>
-        <input type="text" id="info" name="info" required />
+        <input type="text"  id="info" name="info" required />
 
         <label for="city">Grad:</label>
-        <input type="text" id="city" name="city" required />
+        <input type="text" [textContent]="firstName" id="city" name="city" required />
 
         <label for="description">Opis nestale osobe:</label>
-        <textarea
+        <textarea #description
           id="description"
           name="description"
           rows="4"
@@ -34,9 +34,9 @@
         ></textarea>
 
         <label for="image">Slika ili priblizna skica nestale osobe:</label>
-        <input type="file" id="image" name="image" accept="image/*" required />
+        <input (change)="selectPerson($event)" type="file" id="image" name="image" accept="image/*" required />
 
-        <button type="submit" onclick="newPerson()">Pošalji prijavu</button>
+        <button type="button" (click)="newPerson()">Pošalji prijavu</button>
       </form>
       <button (click)="toList()">
         <a [routerLink]="['/missing']">Lista nestalih osoba </a>

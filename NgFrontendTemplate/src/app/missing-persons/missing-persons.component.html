@@ -1,5 +1,5 @@
-<div class="grid grid-cols-3">
-  <div *ngFor="let record of records">
-    <app-missing-person-card [Id]="record.Id"></app-missing-person-card>
+<div class="grid grid-cols-1 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5">
+  <div class="" *ngFor="let record of records">
+    <app-missing-person-card class="cursor-pointer " [Id]="record.Id"></app-missing-person-card>
   </div>
 </div>
